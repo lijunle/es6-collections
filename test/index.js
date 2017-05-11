@@ -30,6 +30,10 @@ describe('ES Collections test', function(){
     }
   });
 
+  it("WeakMap#toString", function () {
+    assert("[object WeakMap]" === new WeakMap().toString());
+  });
+
   it("WeakMap#has", function () {
     var
       o = new WeakMap(),
@@ -117,6 +121,10 @@ describe('ES Collections test', function(){
       assert((new Map).__proto__.isPrototypeOf(new Map()));
       assert((new Map).__proto__ === Map.prototype);
     }
+  });
+
+  it("Map#toString", function () {
+    assert("[object Map]" === new Map().toString());
   });
 
   it("Map#size - Mozilla only", function () {
@@ -310,6 +318,10 @@ describe('ES Collections test', function(){
     }
   });
 
+  it("Set#toString", function () {
+    assert("[object Set]" === new Set().toString());
+  });
+
   it("Set#size - Mozilla only", function () {
     var
       o = new Set()
@@ -448,6 +460,10 @@ describe('ES Collections test', function(){
       assert((new WeakSet).__proto__.isPrototypeOf(new WeakSet()));
       assert((new WeakSet).__proto__ === WeakSet.prototype);
     }
+  });
+
+  it("WeakSet#toString", function () {
+    assert("[object WeakSet]" === new WeakSet().toString());
   });
 
   it("Set#add, WeakSet#add, Map#set and WeakMap#set are chainable now", function(){
