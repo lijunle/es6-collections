@@ -8,6 +8,8 @@
   //Polyfill global objects
   if (typeof WeakMap == 'undefined') {
     exports.WeakMap = createCollection({
+      // WeakMap#toString():string
+      toString: toString('WeakMap'),
       // WeakMap#delete(key:void*):boolean
       'delete': sharedDelete,
       // WeakMap#clear():
@@ -23,6 +25,8 @@
 
   if (typeof Map == 'undefined' || typeof ((new Map).values) !== 'function' || !(new Map).values().next) {
     exports.Map = createCollection({
+      // WeakMap#toString():string
+      Map: toString('Map'),
       // WeakMap#delete(key:void*):boolean
       'delete': sharedDelete,
       //:was Map#get(key:void*[, d3fault:void*]):void*
@@ -47,6 +51,8 @@
 
   if (typeof Set == 'undefined' || typeof ((new Set).values) !== 'function' || !(new Set).values().next) {
     exports.Set = createCollection({
+      // Set#toString():string
+      toString: toString('Set'),
       // Set#has(value:void*):boolean
       has: setHas,
       // Set#add(value:void*):boolean
@@ -68,6 +74,8 @@
 
   if (typeof WeakSet == 'undefined') {
     exports.WeakSet = createCollection({
+      // WeakSet#toString():string
+      toString: toString('WeakSet'),
       // WeakSet#delete(key:void*):boolean
       'delete': sharedDelete,
       // WeakSet#add(value:void*):boolean
@@ -120,6 +128,14 @@
     //init Map argument like `[[1,2], [{}, 4]]`
     else
       a.forEach(function(a){this.set(a[0],a[1])}, this);
+  }
+
+
+  /** toString */
+  function toString(name) {
+    return function toString() {
+      return '[object ' + name + ']';
+    }
   }
 
 
